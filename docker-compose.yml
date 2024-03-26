@@ -1,0 +1,47 @@
+version: '3.8'
+services:
+  db-desafio-compose:
+    image: mysql:8.0.0
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: desafiodb
+    ports:
+      - "3306:3306"
+    restart: always
+
+  app-api-compose:
+    image: desafio-api
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db-desafio-compose:3306/desafiodb?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=pass
+      - SPRING_FLYWAY_URL=jdbc:mysql://db-desafio-compose:3306/desafiodb?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+    depends_on:
+      - db-desafio-compose
+    restart: always
+
+  app-listener-compose:
+    image: db-listener
+    build: .
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db-desafio-compose:3306/desafiodb?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=pass
+      - AWS_ACESS_KEY_ID=COLOCARKEY
+      - AWS_SECRET_ACESS_KEY=COLOCARKEY
+      - AWS_REGION-us-east-1
+      - AWS_SNS_TOPIC_ARN=COLOCARARN
+      - EXPORT_FILE_PATH=/data
+    depends_on:
+      - db-desafio-compose
+      - app-api-compose
+    volumes:
+      - C:/tmp:/data
+    restart: always
+
+
