@@ -19,7 +19,7 @@ O projeto é parte do desafio  tema livre do Itau, é uma aplicação Java que i
 
 ## Pré-requisitos
 
-- [Docker](https://www.docker.com/products/docker-desktop) 
+- [Docker](https://www.docker.com/products/docker-desktop) + MAVEN
 
   OU
 
@@ -33,7 +33,7 @@ Será demonstrado na apresentação o passo com o requisito abaixo.
 
 ## Configuração do Ambiente
 
-Antes de iniciar, certifique-se de que possui docker inicializado em sua máquina, ou uma instancia mysql rodando na porta 3306.
+Antes de iniciar, certifique-se de que possui DOCKER inicializado em sua máquina e o MAVEN instalado, confirme através do mvn -version na sua máquina.
 
 ## Instruções de Inicialização(Para testes do avaliador)
 
