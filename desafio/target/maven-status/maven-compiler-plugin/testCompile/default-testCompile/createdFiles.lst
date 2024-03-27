@@ -1,9 +1,0 @@
-com\itau\desafio\framework\adapter\validators\VeiculoValidatorUtilTests.class
-com\itau\desafio\framework\adapter\exceptions\CustomExceptionHandlerTest.class
-com\itau\desafio\framework\adapter\out\service\OperacoesVeiculoTest.class
-com\itau\desafio\DesafioApplicationTests.class
-com\itau\desafio\application\service\VeiculoServiceTests.class
-com\itau\desafio\framework\adapter\in\rest\VeiculosControllerIntegrationTest.class
-com\itau\desafio\framework\adapter\util\VeiculoFactory.class
-com\itau\desafio\framework\adapter\util\VeiculoMapperTests.class
-com\itau\desafio\application\service\VeiculoServiceTests$1.class
