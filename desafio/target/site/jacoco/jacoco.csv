@@ -1,0 +1,17 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+desafio,com.itau.desafio.framework.util.validators,VeiculoValidatorUtil,0,66,0,20,0,16,0,12,0,2
+desafio,com.itau.desafio.framework.util.validators,MarcaValidator,0,42,0,2,0,5,0,3,0,2
+desafio,com.itau.desafio.framework.util.deserializers,CaseInsensitiveEnumDeserializer,0,10,0,0,0,3,0,2,0,2
+desafio,com.itau.desafio.framework.adapter.out.service,OperacoesMoto,0,65,0,0,0,15,0,4,0,4
+desafio,com.itau.desafio.framework.adapter.out.service,OperacoesOnibus,0,63,0,0,0,15,0,4,0,4
+desafio,com.itau.desafio.framework.adapter.out.service,OperacoesCarro,0,65,0,0,0,15,0,4,0,4
+desafio,com.itau.desafio.framework.adapter.out.service,OperacoesCaminhao,0,65,0,0,0,15,0,4,0,4
+desafio,com.itau.desafio.framework.util.mapper,VeiculoMapper,0,108,0,2,0,27,0,5,0,4
+desafio,com.itau.desafio.framework.adapter.in.rest,VeiculosController,0,70,0,0,0,15,0,9,0,9
+desafio,com.itau.desafio.application.service,VeiculoService,0,82,0,0,0,17,0,5,0,5
+desafio,com.itau.desafio.application.service,VeiculosPortInImpl,0,134,0,0,0,35,0,10,0,10
+desafio,com.itau.desafio.framework.config,SwaggerConfig,0,17,0,0,0,6,0,2,0,2
+desafio,com.itau.desafio.domain.enums,TiposVeiculoEnum,0,27,0,0,0,5,0,1,0,1
+desafio,com.itau.desafio.framework.exceptions,CustomExceptionHandler,0,51,0,0,0,8,0,4,0,4
+desafio,com.itau.desafio.framework.exceptions,VeiculosException,0,4,0,0,0,2,0,1,0,1
+desafio,com.itau.desafio.framework.adapter.out,VeiculosDbPortOutImpl,0,113,0,4,0,22,0,11,0,9

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VeiculosDbPortOutImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">desafio</a> &gt; <a href="index.source.html" class="el_package">com.itau.desafio.framework.adapter.out</a> &gt; <span class="el_source">VeiculosDbPortOutImpl.java</span></div><h1>VeiculosDbPortOutImpl.java</h1><pre class="source lang-java linenums">package com.itau.desafio.framework.adapter.out;
+
+
+
+import com.itau.desafio.application.port.out.VeiculosDbPortOut;
+import com.itau.desafio.domain.db.entities.Veiculo;
+import com.itau.desafio.framework.adapter.out.persistence.VeiculoRepository;
+import com.itau.desafio.framework.exceptions.VeiculosException;
+import com.itau.desafio.framework.util.validators.VeiculoValidatorUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+
+@Component
+<span class="fc" id="L18">public class VeiculosDbPortOutImpl implements VeiculosDbPortOut {</span>
+
+    @Autowired
+    private VeiculoRepository repository;
+
+    @Override
+    public List&lt;Veiculo&gt; getAllVeiculos() {
+<span class="fc" id="L25">        return repository.findAll();</span>
+    }
+
+
+    @Override
+    public Veiculo getVeiculoById(Long id) {
+<span class="fc" id="L31">        return repository.findById(id).orElseThrow(() -&gt; new VeiculosException(&quot;Veiculo não encontrado -&gt; id: &quot;+id));</span>
+    }
+
+    @Override
+    public Veiculo saveVeiculo(Veiculo veiculo) {
+<span class="fc" id="L36">        veiculo.setCreated(new Date());</span>
+<span class="fc" id="L37">        veiculo.setCheckup(false);</span>
+<span class="fc" id="L38">        veiculo.setAutonomia(0d);</span>
+<span class="fc" id="L39">        return repository.save(veiculo);</span>
+    }
+
+    @Override
+    public Veiculo updateVeiculo(Long id, Veiculo veiculo) {
+
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        if(!repository.existsById(id)) {</span>
+<span class="fc" id="L46">            throw new VeiculosException(&quot;Veiculo não encontrado para atualizar&quot;);</span>
+        }
+
+<span class="fc" id="L49">        veiculo.setId(id);</span>
+<span class="fc" id="L50">        veiculo.setUpdated(new Date());</span>
+<span class="fc" id="L51">        return repository.save(veiculo);</span>
+
+    }
+
+    @Override
+    public Veiculo patchVeiculo(Long id, Veiculo veiculo) {
+
+<span class="fc" id="L58">        Optional&lt;Veiculo&gt; byId = repository.findById(id);</span>
+
+<span class="fc" id="L60">        Veiculo existingVeiculo = byId.orElseThrow(() -&gt;</span>
+<span class="fc" id="L61">                new VeiculosException(&quot;Veiculo não encontrado para atualização -&gt; id: &quot; + id));</span>
+
+<span class="fc" id="L63">        VeiculoValidatorUtil.validate(veiculo, existingVeiculo);</span>
+<span class="fc" id="L64">        existingVeiculo.setUpdated(new Date());</span>
+<span class="fc" id="L65">        return repository.save(existingVeiculo);</span>
+    }
+
+    @Override
+    public void deleteVeiculo(Long id) {
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        if(!repository.existsById(id)) {</span>
+<span class="fc" id="L71">            throw new VeiculosException(&quot;Veiculo não encontrado para deletar -&gt; id:&quot;+id);</span>
+        }
+<span class="fc" id="L73">        repository.deleteById(id);</span>
+<span class="fc" id="L74">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

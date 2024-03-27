@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VeiculoMapper.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">desafio</a> &gt; <a href="index.source.html" class="el_package">com.itau.desafio.framework.util.mapper</a> &gt; <span class="el_source">VeiculoMapper.java</span></div><h1>VeiculoMapper.java</h1><pre class="source lang-java linenums">package com.itau.desafio.framework.util.mapper;
+
+
+
+import com.itau.desafio.domain.db.entities.Veiculo;
+import com.itau.desafio.framework.adapter.in.dtos.VeiculoRequestDTO;
+import com.itau.desafio.framework.adapter.in.dtos.VeiculoResponseDTO;
+
+<span class="fc" id="L9">public class VeiculoMapper {</span>
+
+    public static Veiculo toVeiculo(VeiculoRequestDTO veiculoRequestDTO) {
+<span class="fc" id="L12">        return Veiculo</span>
+<span class="fc" id="L13">                .builder()</span>
+<span class="fc" id="L14">                .tipo(checkIfIsNull(veiculoRequestDTO.getTipo()))</span>
+<span class="fc" id="L15">                .veiculo(checkIfIsNull(veiculoRequestDTO.getVeiculo()))</span>
+<span class="fc" id="L16">                .marca(checkIfIsNull(veiculoRequestDTO.getMarca()))</span>
+<span class="fc" id="L17">                .ano(checkIfIsNull(veiculoRequestDTO.getAno()))</span>
+<span class="fc" id="L18">                .descricao(checkIfIsNull(veiculoRequestDTO.getDescricao()))</span>
+<span class="fc" id="L19">                .capacidadeTanque(checkIfIsNull(veiculoRequestDTO.getCapacidadeTanque()))</span>
+<span class="fc" id="L20">                .consumo(checkIfIsNull(veiculoRequestDTO.getConsumo()))</span>
+<span class="fc" id="L21">                .build();</span>
+    }
+
+    public static VeiculoResponseDTO toVeiculoResponseDTO(Veiculo veiculo) {
+<span class="fc" id="L25">        return VeiculoResponseDTO</span>
+<span class="fc" id="L26">                .builder()</span>
+<span class="fc" id="L27">                .id(veiculo.getId())</span>
+<span class="fc" id="L28">                .tipo(checkIfIsNull(veiculo.getTipo()))</span>
+<span class="fc" id="L29">                .veiculo(checkIfIsNull(veiculo.getVeiculo()))</span>
+<span class="fc" id="L30">                .marca(checkIfIsNull(veiculo.getMarca()))</span>
+<span class="fc" id="L31">                .ano(checkIfIsNull(veiculo.getAno()))</span>
+<span class="fc" id="L32">                .descricao(checkIfIsNull(veiculo.getDescricao()))</span>
+<span class="fc" id="L33">                .capacidadeTanque(checkIfIsNull(veiculo.getCapacidadeTanque()))</span>
+<span class="fc" id="L34">                .consumo(checkIfIsNull(veiculo.getConsumo()))</span>
+<span class="fc" id="L35">                .autonomia(checkIfIsNull(veiculo.getAutonomia()))</span>
+<span class="fc" id="L36">                .checkup(checkIfIsNull(veiculo.getCheckup()))</span>
+<span class="fc" id="L37">                .created(checkIfIsNull(veiculo.getCreated()))</span>
+<span class="fc" id="L38">                .updated(checkIfIsNull(veiculo.getUpdated()))</span>
+<span class="fc" id="L39">                .build();</span>
+    }
+
+    //Prevenir NullPointerException
+    private static &lt;T&gt; T checkIfIsNull(T obj) {
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        return obj == null ? null : obj;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

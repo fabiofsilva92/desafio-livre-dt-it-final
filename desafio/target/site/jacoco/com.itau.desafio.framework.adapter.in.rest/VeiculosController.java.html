@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VeiculosController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">desafio</a> &gt; <a href="index.source.html" class="el_package">com.itau.desafio.framework.adapter.in.rest</a> &gt; <span class="el_source">VeiculosController.java</span></div><h1>VeiculosController.java</h1><pre class="source lang-java linenums">package com.itau.desafio.framework.adapter.in.rest;
+
+import com.itau.desafio.application.port.in.VeiculosPortIn;
+import com.itau.desafio.framework.adapter.in.dtos.GenericResponse;
+import com.itau.desafio.framework.adapter.in.dtos.VeiculoRequestDTO;
+import com.itau.desafio.framework.adapter.in.dtos.VeiculoResponseDTO;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
+import java.util.List;
+
+@RestController
+@RequestMapping(&quot;/veiculos&quot;)
+@Tag(name = &quot;Veiculos REST&quot;)
+<span class="fc" id="L21">public class VeiculosController {</span>
+
+    @Autowired
+    private VeiculosPortIn portIn;
+
+    @GetMapping
+    public ResponseEntity&lt;List&lt;VeiculoResponseDTO&gt;&gt; getAll() {
+<span class="fc" id="L28">        return ResponseEntity.ok(portIn.getAllVeiculos());</span>
+    }
+
+
+    @GetMapping(&quot;/{id}&quot;)
+    public ResponseEntity&lt;VeiculoResponseDTO&gt; getVeiculoById(@PathVariable(&quot;id&quot;) Long id){
+
+<span class="fc" id="L35">        return ResponseEntity.ok(portIn.getVeiculoById(id));</span>
+    }
+
+    @PostMapping
+    public ResponseEntity&lt;VeiculoResponseDTO&gt; saveVeiculo(@RequestBody @Valid VeiculoRequestDTO veiculo){
+<span class="fc" id="L40">        VeiculoResponseDTO veiculoCriado = portIn.saveVeiculo(veiculo);</span>
+
+<span class="fc" id="L42">        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()</span>
+<span class="fc" id="L43">                .path(&quot;/{id}&quot;)</span>
+<span class="fc" id="L44">                .buildAndExpand(veiculoCriado.getId())</span>
+<span class="fc" id="L45">                .toUri();</span>
+
+<span class="fc" id="L47">        return ResponseEntity.created(uri).body(veiculoCriado);</span>
+
+    }
+
+    @PutMapping(&quot;/{id}&quot;)
+    public ResponseEntity&lt;VeiculoResponseDTO&gt; updateVeiculo(@PathVariable(&quot;id&quot;) Long id, @RequestBody VeiculoRequestDTO veiculo){
+<span class="fc" id="L53">        return ResponseEntity.ok(portIn.updateVeiculo(id, veiculo));</span>
+    }
+
+    @PatchMapping(&quot;/{id}&quot;)
+    public ResponseEntity&lt;VeiculoResponseDTO&gt; patchVeiculo(@PathVariable(&quot;id&quot;) Long id,
+                                                           @RequestBody VeiculoRequestDTO veiculo){
+<span class="fc" id="L59">        return ResponseEntity.ok(portIn.patchVeiculo(id, veiculo));</span>
+    }
+
+    @DeleteMapping(&quot;/{id}&quot;)
+    public ResponseEntity&lt;Void&gt; deleteVeiculo(@PathVariable(&quot;id&quot;) Long id){
+<span class="fc" id="L64">        portIn.deleteVeiculo(id);</span>
+<span class="fc" id="L65">        return ResponseEntity.noContent().build();</span>
+    }
+
+    @PostMapping(&quot;/checkup&quot;)
+    public ResponseEntity&lt;VeiculoResponseDTO&gt; realizarCheckup(@RequestParam(&quot;id&quot;) Long id){
+<span class="fc" id="L70">        return ResponseEntity.ok(portIn.realizarCheckup(id));</span>
+    }
+
+    @PostMapping(&quot;/autonomia&quot;)
+    public ResponseEntity&lt;VeiculoResponseDTO&gt; calcularAutonomia(@RequestParam(&quot;id&quot;) Long id){
+<span class="fc" id="L75">        return ResponseEntity.ok(portIn.calcularAutonomia(id));</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -1,0 +1,41 @@
+spring:
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/desafiodb?createDatabaseIfNotExist=True&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:pass}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+    properties:
+        hibernate:
+          format_sql: true
+    hibernate:
+      ddl-auto: update
+  application:
+    name: desafio
+
+  flyway:
+    url: ${SPRING_FLYWAY_URL:jdbc:mysql://localhost:3306/desafiodb?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC}
+    schemas: desafiodb
+    user: root
+    password: pass
+    locations: classpath:db/migration
+  h2:
+    console:
+      enabled: true
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace
+
+
+springdoc:
+  api-docs:
+    path: /api-docs
