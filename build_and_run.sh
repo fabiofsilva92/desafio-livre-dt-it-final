@@ -17,7 +17,7 @@ DOCKER_IMAGE_NAME_DB_LISTENER="db-listener"
 echo "Iniciando script de setup"
 cd "$PROJECT_DIR_DESAFIO_API" || exit
 
-#mvn -N io.takari:maven:wrapper
+mvn -N io.takari:maven:wrapperg
 
 # Passo 2: Construir a imagem Docker desafio-api
 echo "Construindo a imagem Docker desafio-api..."
@@ -34,7 +34,7 @@ cd ..
 # Passo 3: Entrar na pasta do db-listener
 cd "$PROJECT_DIR_DB_LISTENER" || exit
 
-#mvn -N io.takari:maven:wrapper
+mvn -N io.takari:maven:wrapper
 
 # Passo 4: Construir a imagem Docker db-listener
 echo "Construindo a imagem Docker db-listener..."
